@@ -71,8 +71,9 @@ class CodeNames(object):
 
     # print words to masters in cmd
     def print(self, words, colors):
-        print(colored("\nThe BLUE team plays first.\n", "blue"))
-        print(''.join(['-' for i in range(66)]))
+        print(colored("\nThe BLUE team plays first.", "blue"))
+        print(colored("\nThe GREEN word is the assassin.\n", "green"))
+        print(''.join(['-' for i in range(96)]))
         print("\n")
         for i in range(5):
             for j in range(5):
@@ -86,4 +87,4 @@ class CodeNames(object):
                     color = "green"
                 print('|', colored(' {0: <15} '.format(words[i*5 + j].capitalize()), color), end="")
             print("|\n")
-        print(''.join(['-' for i in range(61)]))
+        print(''.join(['-' for i in range(96)]))
