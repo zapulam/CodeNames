@@ -8,10 +8,9 @@ If you wish to use the *main.exe* file, all other files can be removed *except* 
 
 This can look like...
 
-
-CodeNames
-    |___ main.exe
-    |___ words
+    CodeNames
+        |___ main.exe
+        |___ words
             |___ words.txt
             |___ original_words.txt
 
