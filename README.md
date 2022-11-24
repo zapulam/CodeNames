@@ -8,9 +8,14 @@ If you wish to use the *main.exe* file, all other files can be removed *except* 
 
 This can look like...
 CodeNames
+
     |___ main.exe
+
     |___ words
+
             |___ words.txt
+
             |___ original_words.txt
+            
 
 If you wish to add new words, you can create new text files in the **words/** directory and write a single word per line (similar to the structure of *words.txt* or original_words.txt*).
