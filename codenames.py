@@ -12,7 +12,7 @@ class CodeNames(object):
         Grid.columnconfigure(root, 0, weight=1)
         
         frame = Frame(root)
-        frame.grid(row=0, column=0, sticky=N+S+E+W)
+        frame.grid(row=0, column=0, sticky=N+S+E+W, padx=(10,10), pady=(10,10))
 
         # create board, words, and colors
         self.board = [ [None]*5 for _ in range(5) ]
@@ -32,11 +32,6 @@ class CodeNames(object):
                     font=('Arial 24'), bg='grey80', relief='groove')
                 btn.grid(row=i, column=j, sticky="nsew")
                 btn.bind('<Button-1>', lambda e, i=i, j=j: self.on_click(i,j,e))
-
-        # full screen
-        pad = 3
-        root.geometry("{0}x{1}+0+0".format(
-            root.winfo_screenwidth()-pad, root.winfo_screenheight()-pad))
 
 
     " Handle click event "
@@ -68,20 +63,33 @@ class CodeNames(object):
 
     """ Print words to cmd """
     def print(self, words, colors):
-        print(colored("\nThe BLUE team plays first.", "blue"))
-        print(colored("\nThe GREEN word is the assassin.\n", "green"))
+        print("\nThe", colored("BLUE", "blue"), "team plays first,", end=" ")
+        print("the", colored("GREEN", "green"), "word is the assassin,", end=" ")
+        print("and the", colored("YELLOW", color="yellow"), "words are free.\n")
         print(''.join(['-' for i in range(96)]))
-        print("\n")
         for i in range(5):
             for j in range(5):
-                if self.colors[i][j] == 'royalblue':
+                if colors[i][j] == 'royalblue':
                     color = "blue"
-                elif self.colors[i][j] == 'firebrick':
+                elif colors[i][j] == 'firebrick':
                     color = "red"
-                elif self.colors[i][j] == 'gold':
+                elif colors[i][j] == 'gold':
                     color = "yellow"
                 else:
                     color = "green"
-                print('|', colored(' {0: <15} '.format(words[i][j].capitalize()), color), end="")
-            print("|\n")
-        print(''.join(['-' for i in range(96)]))
+                print('|', colored(' {x} '.format(x=words[i][j].capitalize().center(15)), color), end="")
+            print("|")
+            print(''.join(['-' for i in range(96)]))
+        
+        
+    def print2(self, words, colors):
+        print("The ", colored("BLUE", "blue"), " team plays first,", end=" ")
+        print("the ", colored("GREEN", "green"), " word is the assassin,", end=" ")
+        print("and the ", colored("YELLOW", color="yellow"), " words are free.")
+        print(colored(' {0: <15} '.format('BLUE TEAM'), 'blue'),\
+            colored(' {0: <15} '.format('RED TEAM'), 'red'),\
+                colored(' {0: <15} '.format('FREE'), 'yellow'),\
+                    colored(' {0: <15} '.format('ASSASSIN'), 'green'))
+        print(''.join(['----------------- ' for i in range(4)]))
+        
+        
