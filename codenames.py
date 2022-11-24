@@ -16,24 +16,22 @@ class CodeNames(object):
 
         # create board, words, and colors
         self.board = [ [None]*5 for _ in range(5) ]
-        self.words = self.create_word_list()
-        self.colors = self.create_selection()
+        self.words = self.create_words()
+        self.colors = self.create_colors()
         self.clicks = [ [0]*5 for _ in range(5) ]
 
         # print words to cmd
         self.print(self.words, self.colors)
 
         # populates board
-        k = 0
         for i, row in enumerate(self.board):
             Grid.rowconfigure(frame, i, weight=1)
             for j, _ in enumerate(row):
                 Grid.columnconfigure(frame, j, weight=1)
-                btn = Button(frame, text=self.words[k].capitalize().center(len(max(self.words, key=len)), ' '), \
+                btn = Button(frame, text=self.words[i][j].capitalize().center(len(max(self.words, key=len)), ' '), \
                     font=('Arial 24'), bg='grey80', relief='groove')
                 btn.grid(row=i, column=j, sticky="nsew")
                 btn.bind('<Button-1>', lambda e, i=i, j=j: self.on_click(i,j,e))
-                k+=1
 
         # full screen
         pad = 3
@@ -44,7 +42,7 @@ class CodeNames(object):
     " Handle click event "
     def on_click(self,i,j,event):
         if self.clicks[i][j] % 2 == 0:
-            color = self.colors[i*5 + j]
+            color = self.colors[i][j]
             event.widget.config(bg=color)
         else:
             color = "grey80"
@@ -53,18 +51,19 @@ class CodeNames(object):
             
 
     """ Create word list """
-    def create_word_list(self):
+    def create_words(self):
         words = set()
         for file in os.listdir(os.path.abspath("words/")):
             words = words | set(line.strip() for line in open(os.path.join("words", file)))
-        return random.sample(list(words), 25)
+        words = random.sample(list(words), 25)
+        return [words[i:i+5] for i in range(0, len(words), 5)]
 
 
     """ Create colored grid """
-    def create_selection(self):
+    def create_colors(self):
         colors = ["royalblue"]*9 + ["firebrick"]*8 + ["gold"]*7 + ["black"]*1
         random.shuffle(colors)
-        return colors
+        return [colors[i:i+5] for i in range(0, len(colors), 5)]
 
 
     """ Print words to cmd """
@@ -75,14 +74,14 @@ class CodeNames(object):
         print("\n")
         for i in range(5):
             for j in range(5):
-                if self.colors[i*5 + j] == 'royalblue':
+                if self.colors[i][j] == 'royalblue':
                     color = "blue"
-                elif self.colors[i*5 + j] == 'firebrick':
+                elif self.colors[i][j] == 'firebrick':
                     color = "red"
-                elif self.colors[i*5 + j] == 'gold':
+                elif self.colors[i][j] == 'gold':
                     color = "yellow"
                 else:
                     color = "green"
-                print('|', colored(' {0: <15} '.format(words[i*5 + j].capitalize()), color), end="")
+                print('|', colored(' {0: <15} '.format(words[i][j].capitalize()), color), end="")
             print("|\n")
         print(''.join(['-' for i in range(96)]))
