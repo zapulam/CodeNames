@@ -28,7 +28,7 @@ class CodeNames(object):
             Grid.rowconfigure(frame, i, weight=1)
             for j, _ in enumerate(row):
                 Grid.columnconfigure(frame, j, weight=1)
-                btn = Button(frame, text=self.words[i][j].capitalize().center(len(max(self.words, key=len)), ' '), \
+                btn = Button(frame, text=self.words[i][j].capitalize().center(max(len(x) for sublist in self.words for x in sublist), ' '), \
                     font=('Arial 24'), bg='grey80', relief='groove')
                 btn.grid(row=i, column=j, sticky="nsew")
                 btn.bind('<Button-1>', lambda e, i=i, j=j: self.on_click(i,j,e))
