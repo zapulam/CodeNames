@@ -80,16 +80,3 @@ class CodeNames(object):
                 print('|', colored(' {x} '.format(x=words[i][j].capitalize().center(15)), color), end="")
             print("|")
             print(''.join(['-' for i in range(96)]))
-        
-        
-    def print2(self, words, colors):
-        print("The ", colored("BLUE", "blue"), " team plays first,", end=" ")
-        print("the ", colored("GREEN", "green"), " word is the assassin,", end=" ")
-        print("and the ", colored("YELLOW", color="yellow"), " words are free.")
-        print(colored(' {0: <15} '.format('BLUE TEAM'), 'blue'),\
-            colored(' {0: <15} '.format('RED TEAM'), 'red'),\
-                colored(' {0: <15} '.format('FREE'), 'yellow'),\
-                    colored(' {0: <15} '.format('ASSASSIN'), 'green'))
-        print(''.join(['----------------- ' for i in range(4)]))
-        
-        
