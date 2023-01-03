@@ -49,7 +49,7 @@ class CodeNames(object):
     def create_words(self):
         words = set()
         for file in os.listdir(os.path.abspath("words/")):
-            words = words | set(line.strip() for line in open(os.path.join("words", file)))
+            words = words | set(line.strip().lower() for line in open(os.path.join("words", file)))
         words = random.sample(list(words), 25)
         return [words[i:i+5] for i in range(0, len(words), 5)]
 
