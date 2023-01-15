@@ -7,7 +7,7 @@ from termcolor import colored
 # For the custom bill version
 Bill_Words = {"hot", "tub", "mountain", "dew", "grape", "jelly", "sub", "smoke", "ribs"}
 Non_Bill_Words = {"chicken", "tree", "ladybug", "handle", "berlin", "mom", "stairs", 
-"beanstalk", "beanstalk", "bleach", "observatory", "applesauce", "tornado", "tournament", 
+"beanstalk", "bleach", "observatory", "applesauce", "tornado", "tournament", 
 "mail", "flutter", "intern"}
 
 
