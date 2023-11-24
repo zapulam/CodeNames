@@ -21,3 +21,5 @@ This can look like...
             |___ original_words.txt
 
 **BONUS:** If you wish to add new words (or remove words), you can create new text files in the **words/** directory and write a single word per line (similar to the structure of *words.txt* or original_words.txt*). This allows for endless fun!
+
+For the custom bill version run *"python main.py --custom"*!
